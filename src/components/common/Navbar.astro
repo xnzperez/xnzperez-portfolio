@@ -1,0 +1,44 @@
+---
+const navItems = [
+  { name: "Home", url: "#" },
+  { name: "Projects", url: "#projects" },
+  { name: "About", url: "#about" }, // Crearemos esta sección pronto
+];
+---
+
+<header
+  class="sticky top-0 z-50 w-full px-6 py-4 transition-all duration-300 bg-dark-900/80 backdrop-blur-md border-b border-white/5"
+>
+  <nav class="max-w-6xl mx-auto flex justify-between items-center">
+    <a
+      href="#"
+      class="text-xl font-bold tracking-tighter text-dark-100 hover:text-primary transition-colors"
+    >
+      CPR<span class="text-primary">.</span>
+    </a>
+
+    <ul class="hidden md:flex gap-8">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              class="text-sm font-mono text-dark-200 hover:text-primary transition-colors"
+            >
+              <span class="text-primary mr-1">/</span>
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="/cv.pdf"
+      target="_blank"
+      class="hidden md:block px-4 py-2 text-xs font-mono text-primary border border-primary rounded hover:bg-primary/10 transition-colors"
+    >
+      Resume
+    </a>
+  </nav>
+</header>

@@ -1,0 +1,102 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+
+// 1. GENERAR RUTAS DINÁMICAS
+// Astro revisa tus archivos .md y crea una URL para cada uno automáticamente.
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+// 2. OBTENER LOS DATOS
+const { project } = Astro.props;
+const { Content } = await project.render(); // Convierte el Markdown a HTML
+---
+
+<Layout title={`${project.data.title} | Carlos Pérez`}>
+  <section class="py-20 max-w-4xl mx-auto">
+    <a
+      href="/#projects"
+      class="inline-flex items-center gap-2 text-dark-200 hover:text-primary transition-colors mb-8 font-mono text-sm group"
+    >
+      <Icon
+        name="lucide:arrow-left"
+        class="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+      />
+      Back to projects
+    </a>
+
+    <header class="mb-12 border-b border-white/10 pb-12 animate-fade-in-up">
+      <div class="flex flex-wrap gap-2 mb-6">
+        {
+          project.data.tags.map((tag) => (
+            <span class="px-3 py-1 text-xs font-mono text-primary bg-primary/10 rounded-full border border-primary/20">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-dark-100 mb-6">
+        {project.data.title}
+      </h1>
+
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+      >
+        <span class="text-dark-200 font-mono text-sm flex items-center gap-2">
+          <Icon name="lucide:calendar" class="w-4 h-4" />
+          {
+            project.data.publishDate.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+            })
+          }
+        </span>
+
+        <div class="flex gap-4">
+          {
+            project.data.githubLink && (
+              <a
+                href={project.data.githubLink}
+                target="_blank"
+                class="flex items-center gap-2 text-dark-100 hover:text-primary transition-colors border border-white/10 px-4 py-2 rounded hover:bg-white/5"
+              >
+                <Icon name="simple-icons:github" class="w-5 h-5" />
+                <span class="font-mono text-sm">Code</span>
+              </a>
+            )
+          }
+          {
+            project.data.demoLink && (
+              <a
+                href={project.data.demoLink}
+                target="_blank"
+                class="flex items-center gap-2 text-dark-100 hover:text-primary transition-colors border border-white/10 px-4 py-2 rounded hover:bg-white/5"
+              >
+                <Icon name="lucide:external-link" class="w-5 h-5" />
+                <span class="font-mono text-sm">Live Demo</span>
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </header>
+
+    <article
+      class="prose prose-invert prose-lg max-w-none
+        prose-headings:text-dark-100 prose-headings:font-bold
+        prose-p:text-dark-200 prose-p:leading-relaxed
+        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-primary prose-li:text-dark-200"
+    >
+      <Content />
+    </article>
+  </section>
+</Layout>

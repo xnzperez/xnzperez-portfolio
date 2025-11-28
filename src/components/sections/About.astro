@@ -1,0 +1,93 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section id="about" class="py-20 border-t border-white/5">
+  <div
+    class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+  >
+    <div class="relative group">
+      <div
+        class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"
+      >
+      </div>
+
+      <div
+        class="aspect-square rounded-2xl overflow-hidden bg-dark-800 border border-white/10 relative"
+      >
+        <img
+          src="/profile.webp"
+          alt="Carlos Pérez"
+          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+          *
+          Si
+          no
+          tienes
+          foto
+          aún,
+          esto
+          mostrará
+          un
+          cuadro
+          gris
+          elegante
+          *
+          onerror="this.style.display='none'"
+        />
+        <div
+          class="absolute inset-0 flex items-center justify-center text-dark-200 font-mono text-xs"
+        >
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-3xl font-bold text-dark-100 mb-6 flex items-center gap-3">
+        <span class="text-primary">04.</span> About Me
+      </h2>
+
+      <div
+        class="prose prose-invert prose-p:text-dark-200 text-lg leading-relaxed space-y-4"
+      >
+        <p>
+          Hello! I'm <strong class="text-primary">Carlos Pérez</strong>, a
+          Systems Engineering student currently in my 9th semester at
+          Universidad Cooperativa de Colombia. Based in Montería, I have
+          developed a strong passion for building scalable software solutions.
+        </p>
+
+        <p>
+          My journey started with a curiosity for how things work, which led me
+          to specialize in Full Stack Development. I enjoy the challenge of
+          designing robust RESTful APIs and creating intuitive user interfaces.
+        </p>
+
+        <p>
+          When I'm not coding, you can usually find me watching e-sports
+          tournaments especially League of Legends, Valorant, and CS2 or
+          listening to music. I enjoy the competitive atmosphere and strategy
+          behind each game, which often inspires my creativity as a developer.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mt-8 font-mono text-sm text-dark-200">
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:map-pin" class="text-primary" />
+          Montería, Colombia
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:languages" class="text-primary" />
+          Spanish (Native)
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:graduation-cap" class="text-primary" />
+          Systems Engineer (In Progress)
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:gamepad-2" class="text-primary" />
+          E-sports Enthusiast
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

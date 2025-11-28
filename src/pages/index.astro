@@ -1,16 +1,93 @@
 ---
+// src/pages/index.astro
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/portfolio/ProjectCard.astro";
+import TechStack from "../components/sections/TechStack.astro";
+import About from "../components/sections/About.astro";
+import Education from "../components/sections/Education.astro";
+import Experience from "../components/sections/Experience.astro";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 
+// Lógica para obtener y ordenar proyectos
+const allProjects = await getCollection("projects");
+const sortedProjects = allProjects.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+// Datos de perfil
+const name = "Carlos Pérez";
+const role = "Full Stack Developer";
+const summary =
+  "Systems Engineering student specialized in building efficient, scalable software and robust RESTful API architectures.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={`${name} | ${role}`}>
+  <section
+    class="relative flex flex-col justify-center items-start min-h-[85vh] py-20 gap-6"
+  >
+    <div
+      class="absolute right-0 top-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -z-10 pointer-events-none"
+    >
+    </div>
+
+    <span
+      class="text-primary font-mono text-lg tracking-wide flex items-center gap-3"
+    >
+      <span class="w-8 h-px bg-primary inline-block"></span>
+      Hi, my name is
+    </span>
+
+    <h1
+      class="text-6xl sm:text-8xl font-bold text-slate-100 tracking-tight leading-none"
+    >
+      {name}.
+    </h1>
+
+    <h2 class="text-4xl sm:text-6xl font-bold text-dark-200 leading-tight">
+      Full Stack Developer
+      <br class="hidden sm:block" />
+      <span class="text-primary">with JavaScript.</span>
+    </h2>
+
+    <p class="max-w-xl text-lg text-dark-200 leading-relaxed mt-4">
+      {summary} I specialize in creating scalable solutions using the JavaScript
+      ecosystem (React, Node.js) and designing robust RESTful API architectures.
+    </p>
+
+    <div class="flex flex-wrap gap-4 mt-8">
+      <a
+        href="#projects"
+        class="px-8 py-4 bg-primary/10 border border-primary text-primary rounded hover:bg-primary hover:text-dark-900 transition-all duration-300 font-mono font-bold"
+      >
+        Check my work
+      </a>
+
+      <a
+        href="mailto:xnzperez.dev@gmail.com"
+        class="px-8 py-4 border border-white/10 text-dark-100 hover:bg-white/5 hover:border-white/30 transition-all duration-300 font-mono"
+      >
+        Contact me
+      </a>
+    </div>
+  </section>
+
+  <TechStack />
+
+  <section id="projects" class="py-20">
+    <h2 class="text-3xl font-bold text-dark-100 mb-10 flex items-center gap-4">
+      <span class="text-primary">01.</span> Featured Projects
+      <span class="h-px bg-dark-200/30 flex-grow max-w-xs"></span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedProjects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <Experience />
+
+  <Education />
+
+  <About />
+</Layout>

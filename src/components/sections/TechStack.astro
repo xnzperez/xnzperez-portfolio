@@ -1,0 +1,68 @@
+---
+import { Icon } from "astro-icon/components";
+
+const technologies = [
+  { name: "JavaScript", icon: "logos:javascript" },
+  { name: "TypeScript", icon: "logos:typescript-icon" },
+  { name: "Go", icon: "logos:go" },
+  { name: "React", icon: "logos:react" },
+  { name: "Node.js", icon: "logos:nodejs-icon" },
+  { name: "PostgreSQL", icon: "logos:postgresql" },
+  { name: "MySQL", icon: "logos:mysql-icon" },
+  { name: "Git", icon: "logos:git-icon" },
+  { name: "Tailwind", icon: "logos:tailwindcss-icon" },
+  { name: "HTML5", icon: "logos:html-5" },
+  { name: "CSS3", icon: "logos:css-3" },
+];
+---
+
+<section class="py-24 overflow-hidden bg-dark-900/50 border-y border-white/5">
+  <div class="container mx-auto px-6 mb-12 text-center">
+    <h2 class="text-primary font-mono text-sm uppercase tracking-[0.2em] mb-2">
+      Technologies & Tools
+    </h2>
+    <p class="text-dark-200 text-lg">I use to build</p>
+  </div>
+
+  <div
+    class="flex overflow-hidden whitespace-nowrap pb-8 [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+  >
+    <ul class="flex items-center animate-loop-scroll">
+      {
+        technologies.map((tech) => (
+          <li class="mx-12">
+            <div class="group relative flex flex-col items-center gap-3 cursor-pointer">
+              <Icon
+                name={tech.icon}
+                class="w-14 h-14 opacity-60 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-lg group-hover:scale-110"
+              />
+
+              <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-dark-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                {tech.name}
+              </span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ul class="flex items-center animate-loop-scroll" aria-hidden="true">
+      {
+        technologies.map((tech) => (
+          <li class="mx-12">
+            <div class="group relative flex flex-col items-center gap-3 cursor-pointer">
+              <Icon
+                name={tech.icon}
+                class="w-14 h-14 opacity-60 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-lg group-hover:scale-110"
+              />
+
+              <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-dark-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                {tech.name}
+              </span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

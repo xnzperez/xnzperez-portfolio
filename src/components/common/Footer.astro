@@ -1,0 +1,59 @@
+---
+// Importamos el componente de icono
+import { Icon } from "astro-icon/components";
+
+const currentYear = new Date().getFullYear();
+
+// Configuración de tus redes sociales
+// name: Texto a mostrar
+// url: Tu enlace
+// icon: El nombre del icono en la librería (simple-icons para marcas, lucide para UI)
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/xnzperez",
+    icon: "simple-icons:github",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/xnzperez",
+    icon: "simple-icons:linkedin",
+  },
+  {
+    name: "Email",
+    url: "mailto:xnzperez.dev@gmail.com",
+    icon: "lucide:mail", // Usamos un icono genérico de mail
+  },
+];
+---
+
+<footer
+  class="py-10 text-center text-dark-200 text-sm font-mono border-t border-white/5 mt-auto"
+>
+  <div class="flex justify-center gap-6 mb-6">
+    {
+      socialLinks.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 hover:text-primary transition-colors duration-300 group"
+        >
+          <Icon
+            name={link.icon}
+            class="w-5 h-5 group-hover:scale-110 transition-transform"
+          />
+
+          <span>{link.name}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <p>
+    Designed & Built by <span class="text-primary font-bold">Carlos Pérez</span>
+  </p>
+  <p class="opacity-50 mt-2 text-xs">
+    {currentYear}.
+  </p>
+</footer>

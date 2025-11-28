@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data, slug } = project;
+---
+
+<a
+  href={`/projects/${slug}`}
+  class="group relative flex flex-col p-6 rounded-2xl bg-dark-800/50 border border-white/10 hover:border-primary/50 hover:bg-dark-800 transition-all duration-300 overflow-hidden"
+>
+  <div
+    class="absolute -inset-2 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10"
+  >
+  </div>
+
+  <div class="flex justify-between items-start mb-4">
+    <h3
+      class="text-xl font-bold text-dark-100 group-hover:text-primary transition-colors"
+    >
+      {data.title}
+    </h3>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      class="w-5 h-5 text-dark-200 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+    </svg>
+  </div>
+
+  <p class="text-dark-200 text-sm leading-relaxed mb-6 flex-grow">
+    {data.description}
+  </p>
+
+  <div class="flex flex-wrap gap-2 mt-auto">
+    {
+      data.tags.map((tag) => (
+        <span class="px-3 py-1 text-xs font-mono text-primary bg-primary/10 rounded-full border border-primary/20">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+</a>
