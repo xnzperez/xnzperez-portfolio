@@ -8,5 +8,6 @@ export default defineConfig({
   integrations: [
     tailwind(),
     icon()
-  ]
+  ],
+  site: 'https://xnzperez-portfolio.vercel.app',
 });

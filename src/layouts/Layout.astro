@@ -7,21 +7,104 @@ import Footer from "../components/common/Footer.astro";
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  type?: string;
 }
 
-const { title, description = "Carlos Pérez - Full Stack Developer Portfolio" } =
-  Astro.props;
+const {
+  title,
+  description = "Portfolio profesional de Carlos Pérez - Desarrollador Full Stack especializado en React, Node.js y tecnologías web modernas. Explora mis proyectos y experiencia.",
+  image = "/og-image.jpg",
+  type = "website",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteTitle = "Carlos Pérez - Full Stack Developer";
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Viewport Meta Tag - Critical for mobile and performance -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Carlos Pérez" />
+    <meta
+      name="keywords"
+      content="desarrollador full stack, react, node.js, javascript, typescript, portfolio, web developer"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:creator" content="@xnzperez" />
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Generator -->
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Theme Color -->
+    <meta
+      name="theme-color"
+      content="#0a0e1a"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Carlos Pérez",
+        url: Astro.site,
+        image: new URL(image, Astro.site),
+        jobTitle: "Full Stack Developer",
+        description: description,
+        sameAs: [
+          "https://github.com/xnzperez",
+          "https://linkedin.com/in/xnzperez",
+        ],
+      })}
+    />
   </head>
   <body
     class="text-slate-400 font-sans flex flex-col min-h-screen antialiased selection:bg-cyan-400/30 selection:text-cyan-200"
@@ -29,7 +112,7 @@ const { title, description = "Carlos Pérez - Full Stack Developer Portfolio" } 
   >
     <Navbar />
 
-    <main class="flex-grow w-full relative z-10">
+    <main id="main-content" class="flex-grow w-full relative z-10">
       <slot />
     </main>
 
