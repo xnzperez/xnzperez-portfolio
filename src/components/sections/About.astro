@@ -2,55 +2,44 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<section id="about" class="py-20 border-t border-white/5">
+<section id="about" class="py-32 relative">
   <div
-    class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+    class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
   >
-    <div class="relative group">
+    <div class="relative group flex justify-center md:justify-end w-full">
       <div
-        class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"
+        class="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-blue-600/10 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"
       >
       </div>
 
       <div
-        class="aspect-square rounded-2xl overflow-hidden bg-dark-800 border border-white/10 relative"
+        class="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#1a1a1a]"
       >
         <img
           src="/profile.webp"
           alt="Carlos Pérez"
-          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-          *
-          Si
-          no
-          tienes
-          foto
-          aún,
-          esto
-          mostrará
-          un
-          cuadro
-          gris
-          elegante
-          *
+          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
           onerror="this.style.display='none'"
         />
         <div
-          class="absolute inset-0 flex items-center justify-center text-dark-200 font-mono text-xs"
+          class="absolute inset-0 flex items-center justify-center text-slate-600 bg-[#121212] -z-10"
         >
+          <Icon name="mdi:account" class="w-24 h-24 opacity-20" />
         </div>
       </div>
     </div>
 
     <div>
-      <h2 class="text-3xl font-bold text-dark-100 mb-6 flex items-center gap-3">
-        <span class="text-primary">04.</span> About Me
+      <h2
+        class="text-3xl font-bold text-slate-100 mb-8 flex items-center gap-3"
+      >
+        <Icon name="mdi:account-outline" class="w-8 h-8 text-cyan-400" />
+        About Me
       </h2>
 
-      <div
-        class="prose prose-invert prose-p:text-dark-200 text-lg leading-relaxed space-y-4"
-      >
+      <div class="space-y-4 text-slate-400 text-lg leading-relaxed">
         <p>
-          Hello! I'm <strong class="text-primary">Carlos Pérez</strong>, a
+          Hello! I'm <strong class="text-cyan-400">Carlos Pérez</strong>, a
           Systems Engineering student currently in my 9th semester at
           Universidad Cooperativa de Colombia. Based in Montería, I have
           developed a strong passion for building scalable software solutions.
@@ -65,26 +54,27 @@ import { Icon } from "astro-icon/components";
         <p>
           When I'm not coding, you can usually find me watching e-sports
           tournaments especially League of Legends, Valorant, and CS2 or
-          listening to music. I enjoy the competitive atmosphere and strategy
-          behind each game, which often inspires my creativity as a developer.
+          listening to music.
         </p>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 mt-8 font-mono text-sm text-dark-200">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 font-mono text-sm text-slate-300"
+      >
         <div class="flex items-center gap-2">
-          <Icon name="lucide:map-pin" class="text-primary" />
+          <Icon name="mdi:map-marker" class="text-cyan-400 w-5 h-5" />
           Montería, Colombia
         </div>
         <div class="flex items-center gap-2">
-          <Icon name="lucide:languages" class="text-primary" />
+          <Icon name="mdi:translate" class="text-cyan-400 w-5 h-5" />
           Spanish (Native)
         </div>
         <div class="flex items-center gap-2">
-          <Icon name="lucide:graduation-cap" class="text-primary" />
-          Systems Engineer (In Progress)
+          <Icon name="mdi:school" class="text-cyan-400 w-5 h-5" />
+          Systems Engineer
         </div>
         <div class="flex items-center gap-2">
-          <Icon name="lucide:gamepad-2" class="text-primary" />
+          <Icon name="mdi:controller" class="text-cyan-400 w-5 h-5" />
           E-sports Enthusiast
         </div>
       </div>

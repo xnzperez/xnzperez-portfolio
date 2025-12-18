@@ -1,0 +1,46 @@
+---
+import ProjectCard from "../ui/ProjectCard.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
+  <h2
+    class="flex items-center justify-center gap-3 text-3xl md:text-4xl font-bold text-slate-100 mb-16"
+  >
+    <Icon name="mdi:code-tags" class="w-10 h-10 text-cyan-400" />
+    Featured <span class="text-cyan-400">Projects</span>
+  </h2>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
+  >
+    <ProjectCard
+      title="Action Plan - UCC Quality Dept."
+      description="Strategic design and requirements gathering to optimize quality processes at Universidad Cooperativa de Colombia."
+      tags={["Node.js", "PostgreSQL", "Analysis", "Management", "Processes"]}
+      githubLink="https://github.com/xnzperez/plan-accion-ucc.git"
+    >
+      <div
+        slot="image"
+        class="w-full h-full bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-white/20"
+      >
+        <span class="text-4xl font-bold">UCC</span>
+      </div>
+    </ProjectCard>
+
+    <ProjectCard
+      title="DevCoop E-commerce"
+      description="Prototype presented at the Chamber of Commerce of Montería for the 'Digital Transformation for MSMEs' program. Built as a frontend challenge consuming the Platzi Fake Store API."
+      tags={["React", "API Integration", "Context API", "Tailwind"]}
+      githubLink="https://github.com/xnzperez/DevCoop-MiPymes.git"
+      demoLink="https://dev-coop-mi-pymes.vercel.app/"
+    >
+      <div
+        slot="image"
+        class="w-full h-full bg-gradient-to-br from-purple-900 to-slate-900 flex items-center justify-center text-white/20"
+      >
+        <span class="text-4xl font-bold">DevCoop</span>
+      </div>
+    </ProjectCard>
+  </div>
+</section>
