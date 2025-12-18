@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 html {
-  background-color: #0a0e1a; /* Azul muy oscuro tipo JSConf */
-  color: #f1f5f9;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
   scroll-behavior: smooth;
 }
 
@@ -13,7 +13,7 @@ body {
   margin: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: #0a0e1a;
+  background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   position: relative;
 }
@@ -73,4 +73,155 @@ body::before {
 #menu-btn.open .hamburger-line:nth-child(3) {
   bottom: 50%;
   transform: translateY(50%) rotate(-45deg);
+}
+
+/* Estilos para tema claro */
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0a192f;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+}
+
+html.dark {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0a192f;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+}
+
+/* Light theme - Professional clean palette */
+html:not(.dark) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent: #0891b2;
+}
+
+/* Light theme overrides */
+html:not(.dark) body::before {
+  background-image: linear-gradient(
+      rgba(8, 145, 178, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(8, 145, 178, 0.06) 1px, transparent 1px);
+}
+
+/* Light theme text colors */
+html:not(.dark) .text-slate-100 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html:not(.dark) .text-slate-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Light theme backgrounds */
+html:not(.dark) .bg-\[\#0a192f\] {
+  background-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .bg-\[\#0a192f\]\/80 {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+}
+
+html:not(.dark) .bg-\[\#0a192f\]\/90 {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+}
+
+html:not(.dark) .bg-\[\#112240\] {
+  background-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .bg-\[\\#1a2c4e\] {
+  background-color: #cbd5e1 !important;
+}
+
+/* Light theme borders */
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html:not(.dark) .border-slate-800 {
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .border-\[\#0a192f\] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Light theme cyan accent adjustments */
+html:not(.dark) .text-cyan-400 {
+  color: #0891b2 !important;
+}
+
+html:not(.dark) .border-cyan-400 {
+  border-color: #0891b2 !important;
+}
+
+html:not(.dark) .bg-cyan-400\/10 {
+  background-color: rgba(8, 145, 178, 0.1) !important;
+}
+
+html:not(.dark) .hover\:bg-cyan-400:hover {
+  background-color: #0891b2 !important;
+  color: #ffffff !important;
+}
+
+html:not(.dark) .hover\:text-cyan-400:hover {
+  color: #0891b2 !important;
+}
+
+html:not(.dark) .bg-cyan-900\/10 {
+  background-color: rgba(8, 145, 178, 0.08) !important;
+}
+
+html:not(.dark) .border-cyan-500\/20 {
+  border-color: rgba(8, 145, 178, 0.25) !important;
+}
+
+html:not(.dark) .text-cyan-100 {
+  color: #0891b2 !important;
+}
+
+/* Light theme - Theme toggle dropdown */
+html:not(.dark) .themes-menu {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html:not(.dark) .themes-menu-option {
+  color: #334155 !important;
+}
+
+/* Light theme - Hamburger menu lines */
+html:not(.dark) .hamburger-line {
+  background-color: #0891b2 !important;
+}
+
+/* Light theme - Mobile menu background */
+html:not(.dark) #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+html:not(.dark) #mobile-menu .text-slate-300 {
+  color: #334155 !important;
+}
+
+/* Transiciones suaves entre temas */
+html,
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

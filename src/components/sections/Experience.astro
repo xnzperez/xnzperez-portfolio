@@ -14,13 +14,13 @@ const jobs = [
 import { Icon } from "astro-icon/components";
 ---
 
-<section id="experience" class="py-24 max-w-6xl mx-auto px-6">
-  <h2 class="flex items-center gap-4 text-3xl font-bold text-slate-100 mb-16">
+<section id="experience" class="py-12 max-w-6xl mx-auto px-6">
+  <h2 class="flex items-center gap-4 text-2xl font-bold text-slate-100 mb-12">
     <Icon name="mdi:briefcase-outline" class="w-8 h-8 text-cyan-400" />
     Experience
   </h2>
 
-  <div class="space-y-12">
+  <div class="space-y-8">
     {
       jobs.map((job) => (
         <div class="relative">
@@ -45,7 +45,7 @@ import { Icon } from "astro-icon/components";
                 @ {job.company}
               </p>
 
-              <p class="text-slate-400 leading-relaxed max-w-xl text-lg">
+              <p class="text-slate-400 leading-relaxed max-w-xl text-base">
                 {job.description}
               </p>
 

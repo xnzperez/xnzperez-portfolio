@@ -1,0 +1,165 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="theme-toggle-wrapper relative">
+  <button
+    class="theme-toggle-btn relative p-2 text-cyan-400 hover:bg-cyan-400/10 rounded-lg transition-colors"
+    aria-label="Toggle theme"
+  >
+    <Icon name="mdi:theme-light-dark" class="w-6 h-6" />
+  </button>
+
+  <div
+    class="themes-menu absolute top-full right-0 mt-2 bg-[#0a192f]/95 dark:bg-[#0a192f]/95 backdrop-blur-md border border-white/10 dark:border-white/10 rounded-lg shadow-2xl overflow-hidden opacity-0 scale-95 pointer-events-none transition-all duration-200 z-50"
+  >
+    <button
+      class="themes-menu-option w-full px-4 py-3 text-left text-sm font-mono text-slate-300 dark:text-slate-300 hover:bg-cyan-400/10 hover:text-cyan-400 transition-colors flex items-center gap-3"
+      data-theme="light"
+    >
+      <Icon
+        name="mdi:white-balance-sunny"
+        class="w-5 h-5 theme-toggle-icon"
+        data-icon-theme="light"
+      />
+      Light
+    </button>
+    <button
+      class="themes-menu-option w-full px-4 py-3 text-left text-sm font-mono text-slate-300 dark:text-slate-300 hover:bg-cyan-400/10 hover:text-cyan-400 transition-colors flex items-center gap-3"
+      data-theme="dark"
+    >
+      <Icon
+        name="mdi:moon-waning-crescent"
+        class="w-5 h-5 theme-toggle-icon"
+        data-icon-theme="dark"
+      />
+      Dark
+    </button>
+    <button
+      class="themes-menu-option w-full px-4 py-3 text-left text-sm font-mono text-slate-300 dark:text-slate-300 hover:bg-cyan-400/10 hover:text-cyan-400 transition-colors flex items-center gap-3"
+      data-theme="system"
+    >
+      <Icon
+        name="mdi:laptop"
+        class="w-5 h-5 theme-toggle-icon"
+        data-icon-theme="system"
+      />
+      System
+    </button>
+  </div>
+</div>
+
+<style>
+  .themes-menu.open {
+    opacity: 1;
+    scale: 1;
+    pointer-events: auto;
+  }
+
+  .theme-toggle-icon {
+    transition: scale 0.2s ease;
+  }
+</style>
+
+<script is:inline data-astro-exec>
+  // Script scoped to handle multiple instances
+  (() => {
+    // Prevent duplicate execution if component is rendered multiple times
+    if (window.themeToggleInitialized) return;
+    window.themeToggleInitialized = true;
+
+    let removeListener = null;
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const getThemePreference = () => {
+      if (typeof localStorage !== "undefined") {
+        return localStorage.getItem("theme") ?? "dark";
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    };
+
+    const updateIcons = (themePreference) => {
+      document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
+        const iconTheme = element.getAttribute("data-icon-theme");
+        element.style.scale = iconTheme === themePreference ? "1" : "0";
+      });
+    };
+
+    const updateTheme = () => {
+      if (removeListener != null) {
+        removeListener();
+      }
+      matchMedia.addEventListener("change", updateTheme);
+      removeListener = () => {
+        matchMedia.removeEventListener("change", updateTheme);
+      };
+
+      const themePreference = getThemePreference();
+      const isDark =
+        themePreference === "dark" ||
+        (themePreference === "system" && matchMedia.matches);
+
+      updateIcons(themePreference);
+      document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    };
+
+    // Initialize theme
+    updateTheme();
+
+    // Close all menus when clicking outside
+    document.addEventListener("click", (e) => {
+      const isClickInsideAnyToggle = e.target.closest(".theme-toggle-wrapper");
+      if (!isClickInsideAnyToggle) {
+        document.querySelectorAll(".themes-menu").forEach((menu) => {
+          menu.classList.remove("open");
+        });
+      }
+    });
+
+    // Handle interactions for each instance
+    const initToggles = () => {
+      document.querySelectorAll(".theme-toggle-wrapper").forEach((wrapper) => {
+        // Check if already initialized to be safe
+        if (wrapper.hasAttribute("data-initialized")) return;
+        wrapper.setAttribute("data-initialized", "true");
+
+        const btn = wrapper.querySelector(".theme-toggle-btn");
+        const menu = wrapper.querySelector(".themes-menu");
+        const options = wrapper.querySelectorAll(".themes-menu-option");
+
+        if (btn && menu) {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // Close other menus first
+            document.querySelectorAll(".themes-menu").forEach((m) => {
+              if (m !== menu) m.classList.remove("open");
+            });
+
+            const isClosed = !menu.classList.contains("open");
+            menu.classList[isClosed ? "add" : "remove"]("open");
+          });
+        }
+
+        options.forEach((option) => {
+          option.addEventListener("click", (e) => {
+            const theme = e.currentTarget.getAttribute("data-theme");
+            localStorage.setItem("theme", theme);
+            updateTheme();
+            menu.classList.remove("open");
+          });
+        });
+      });
+    };
+
+    initToggles();
+
+    document.addEventListener("astro:after-swap", () => {
+      // Re-run init on navigation for new elements if any
+      initToggles();
+      updateTheme();
+      window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+    });
+  })();
+</script>

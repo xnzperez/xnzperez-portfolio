@@ -24,7 +24,8 @@ const { title, description = "Carlos Pérez - Full Stack Developer Portfolio" } 
     <title>{title}</title>
   </head>
   <body
-    class="bg-[#0a0e1a] text-slate-400 font-sans flex flex-col min-h-screen antialiased selection:bg-cyan-400/30 selection:text-cyan-200"
+    class="text-slate-400 font-sans flex flex-col min-h-screen antialiased selection:bg-cyan-400/30 selection:text-cyan-200"
+    style="background-color: var(--bg-primary); color: var(--text-secondary);"
   >
     <Navbar />
 
@@ -35,20 +36,36 @@ const { title, description = "Carlos Pérez - Full Stack Developer Portfolio" } 
     <Footer />
 
     <style is:global>
-      /* Estilizamos el scroll para que combine con el nuevo diseño oscuro */
-      ::-webkit-scrollbar {
+      /* Scrollbar para tema oscuro */
+      html.dark ::-webkit-scrollbar {
         width: 10px;
       }
-      ::-webkit-scrollbar-track {
+      html.dark ::-webkit-scrollbar-track {
         background: #0a0e1a;
       }
-      ::-webkit-scrollbar-thumb {
+      html.dark ::-webkit-scrollbar-thumb {
         background: #1e293b;
         border-radius: 5px;
         border: 2px solid #0a0e1a;
       }
-      ::-webkit-scrollbar-thumb:hover {
+      html.dark ::-webkit-scrollbar-thumb:hover {
         background: #22d3ee;
+      }
+
+      /* Scrollbar para tema claro */
+      html:not(.dark) ::-webkit-scrollbar {
+        width: 10px;
+      }
+      html:not(.dark) ::-webkit-scrollbar-track {
+        background: #ffffff;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 5px;
+        border: 2px solid #ffffff;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+        background: #0891b2;
       }
     </style>
 

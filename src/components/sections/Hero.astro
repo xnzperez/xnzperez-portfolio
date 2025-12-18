@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 
 <section
   id="home"
-  class="min-h-screen flex flex-col justify-center px-6 max-w-7xl mx-auto pt-20"
+  class="min-h-screen flex flex-col justify-center px-6 max-w-7xl mx-auto pt-16"
 >
   <div class="space-y-4">
     <div class="flex items-center gap-6 mb-4">
@@ -25,7 +25,7 @@ import { Icon } from "astro-icon/components";
         href="https://www.linkedin.com/in/carlosperez"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-900/10 border border-cyan-500/20 hover:bg-cyan-900/30 hover:border-cyan-400/50 hover:scale-105 transition-all duration-300 group shadow-lg shadow-cyan-900/10"
+        class="flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-900/10 dark:bg-cyan-900/10 border border-cyan-500/20 dark:border-cyan-500/20 hover:bg-cyan-900/30 dark:hover:bg-cyan-900/30 hover:border-cyan-400/50 hover:scale-105 transition-all duration-300 group shadow-lg shadow-cyan-900/10"
       >
         <span class="relative flex h-2.5 w-2.5">
           <span
@@ -36,7 +36,9 @@ import { Icon } from "astro-icon/components";
           ></span>
         </span>
 
-        <span class="text-cyan-100 text-sm font-mono font-medium tracking-wide">
+        <span
+          class="text-cyan-100 dark:text-cyan-100 text-sm font-mono font-medium tracking-wide"
+        >
           Available for work
         </span>
       </a>

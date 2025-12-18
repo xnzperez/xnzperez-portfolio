@@ -24,8 +24,8 @@ const certifications = [
 ];
 ---
 
-<section id="education" class="py-24 max-w-6xl mx-auto px-6">
-  <h2 class="flex items-center gap-4 text-3xl font-bold text-slate-100 mb-16">
+<section id="education" class="py-12 max-w-6xl mx-auto px-6">
+  <h2 class="flex items-center gap-4 text-2xl font-bold text-slate-100 mb-12">
     <Icon name="mdi:school-outline" class="w-8 h-8 text-cyan-400" />
     Education & Certifications
   </h2>
@@ -33,18 +33,18 @@ const certifications = [
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
     <div class="lg:col-span-2">
       <h3
-        class="flex items-center gap-2 text-xl font-bold text-slate-200 mb-8 font-mono"
+        class="flex items-center gap-2 text-lg font-bold text-slate-200 mb-6 font-mono"
       >
         Academic History
       </h3>
 
-      <div class="relative border-l border-slate-800 ml-3 space-y-12">
+      <div class="relative border-l border-slate-800 ml-3 space-y-8">
         {
           education.map((edu) => (
             <div class="relative pl-8 md:pl-8 group">
               <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-[#0a192f] border-2 border-cyan-400 group-hover:bg-cyan-400 transition-colors z-10" />
 
-              <h4 class="text-2xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
+              <h4 class="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
                 {edu.institution}
               </h4>
               <div class="text-cyan-400 font-mono text-sm mb-2 mt-1">
@@ -65,7 +65,7 @@ const certifications = [
 
     <div>
       <h3
-        class="flex items-center gap-2 text-xl font-bold text-slate-200 mb-8 font-mono"
+        class="flex items-center gap-2 text-lg font-bold text-slate-200 mb-6 font-mono"
       >
         Certifications
       </h3>
