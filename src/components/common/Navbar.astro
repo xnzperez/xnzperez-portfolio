@@ -47,27 +47,18 @@ const navItems = [
 
     <button
       id="menu-btn"
-      class="md:hidden text-cyan-400 focus:outline-none z-50"
+      class="md:hidden text-cyan-400 focus:outline-none z-50 relative w-8 h-8"
+      aria-label="Toggle menu"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-8 w-8"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
+      <span class="hamburger-line top-1 rotate-0"></span>
+      <span class="hamburger-line top-1/2 -translate-y-1/2 opacity-100"></span>
+      <span class="hamburger-line bottom-1 rotate-0"></span>
     </button>
   </nav>
 
   <div
     id="mobile-menu"
-    class="fixed inset-0 bg-[#0a192f] hidden flex-col items-center justify-center gap-8 md:hidden transition-all duration-300"
+    class="fixed inset-0 bg-[#0a192f]/90 backdrop-blur-lg hidden flex-col items-center justify-center gap-8 md:hidden transition-all duration-300"
   >
     {
       navItems.map((item) => (
@@ -146,12 +137,14 @@ const navItems = [
   menuBtn?.addEventListener("click", () => {
     mobileMenu?.classList.toggle("hidden");
     mobileMenu?.classList.toggle("flex");
+    menuBtn?.classList.toggle("open");
   });
 
   mobileLinks.forEach((link) => {
     link.addEventListener("click", () => {
       mobileMenu?.classList.add("hidden");
       mobileMenu?.classList.remove("flex");
+      menuBtn?.classList.remove("open");
     });
   });
 </script>

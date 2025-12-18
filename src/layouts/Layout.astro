@@ -24,32 +24,47 @@ const { title, description = "Carlos Pérez - Full Stack Developer Portfolio" } 
     <title>{title}</title>
   </head>
   <body
-    class="bg-[#0a192f] text-slate-400 font-sans flex flex-col min-h-screen antialiased selection:bg-cyan-400/30 selection:text-cyan-200"
+    class="bg-[#0a0e1a] text-slate-400 font-sans flex flex-col min-h-screen antialiased selection:bg-cyan-400/30 selection:text-cyan-200"
   >
     <Navbar />
 
-    <main class="flex-grow w-full">
+    <main class="flex-grow w-full relative z-10">
       <slot />
     </main>
 
     <Footer />
 
     <style is:global>
-      /* Estilizamos el scroll para que combine con tu diseño Navy Blue */
+      /* Estilizamos el scroll para que combine con el nuevo diseño oscuro */
       ::-webkit-scrollbar {
         width: 10px;
       }
       ::-webkit-scrollbar-track {
-        background: #0a192f;
+        background: #0a0e1a;
       }
       ::-webkit-scrollbar-thumb {
         background: #1e293b;
         border-radius: 5px;
-        border: 2px solid #0a192f;
+        border: 2px solid #0a0e1a;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #22d3ee;
       }
     </style>
+
+    <script>
+      // Detectar scroll para desvanecer el patrón de cuadrícula
+      let scrollTimeout: ReturnType<typeof setTimeout>;
+
+      window.addEventListener("scroll", () => {
+        const body = document.body;
+
+        if (window.scrollY > 100) {
+          body.classList.add("scrolled");
+        } else {
+          body.classList.remove("scrolled");
+        }
+      });
+    </script>
   </body>
 </html>
