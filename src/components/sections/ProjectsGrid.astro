@@ -1,6 +1,22 @@
 ---
 import ProjectCard from "../ui/ProjectCard.astro";
 import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+
+// Query featured projects from content collection
+const allProjects = await getCollection("projects");
+const featuredProjects = allProjects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// Color gradients for project cards
+const gradients = [
+  "from-blue-900 to-slate-900",
+  "from-purple-900 to-slate-900",
+  "from-cyan-900 to-slate-900",
+  "from-emerald-900 to-slate-900",
+  "from-rose-900 to-slate-900",
+];
 ---
 
 <section id="projects" class="py-16 px-6 max-w-7xl mx-auto">
@@ -14,33 +30,31 @@ import { Icon } from "astro-icon/components";
   <div
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
   >
-    <ProjectCard
-      title="Action Plan - UCC Quality Dept."
-      description="Strategic design and requirements gathering to optimize quality processes at Universidad Cooperativa de Colombia."
-      tags={["Node.js", "PostgreSQL", "Analysis", "Management", "Processes"]}
-      githubLink="https://github.com/xnzperez/plan-accion-ucc.git"
-    >
-      <div
-        slot="image"
-        class="w-full h-full bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center text-white/20"
-      >
-        <span class="text-4xl font-bold">UCC</span>
-      </div>
-    </ProjectCard>
-
-    <ProjectCard
-      title="DevCoop E-commerce"
-      description="Prototype presented at the Chamber of Commerce of Montería for the 'Digital Transformation for MSMEs' program. Built as a frontend challenge consuming the Platzi Fake Store API."
-      tags={["React", "API Integration", "Context API", "Tailwind"]}
-      githubLink="https://github.com/xnzperez/DevCoop-MiPymes.git"
-      demoLink="https://dev-coop-mi-pymes.vercel.app/"
-    >
-      <div
-        slot="image"
-        class="w-full h-full bg-gradient-to-br from-purple-900 to-slate-900 flex items-center justify-center text-white/20"
-      >
-        <span class="text-4xl font-bold">DevCoop</span>
-      </div>
-    </ProjectCard>
+    {
+      featuredProjects.map((project, index) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          tags={project.data.tags}
+          githubLink={project.data.githubLink}
+          demoLink={project.data.demoLink}
+          slug={project.slug}
+        >
+          <div
+            slot="image"
+            class={`w-full h-full bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center text-white/20`}
+          >
+            <span class="text-4xl font-bold">
+              {project.data.title
+                .split(" ")
+                .map((word) => word[0])
+                .join("")
+                .toUpperCase()
+                .slice(0, 3)}
+            </span>
+          </div>
+        </ProjectCard>
+      ))
+    }
   </div>
 </section>

@@ -4,6 +4,7 @@ description: "Strategic action plan designed to align academic objectives with i
 tags: ["Leadership", "Data Analysis", "Process Optimization", "Management"]
 publishDate: 2025-11-19
 featured: true
+githubLink: "https://github.com/xnzperez/plan-accion-ucc"
 ---
 
 ## The Challenge
