@@ -36,7 +36,7 @@ const navItems = [
         navItems.map((item) => (
           <li>
             <a
-              href={item.url}
+              href={`/${item.url}`}
               class="text-[13px] font-mono font-medium text-slate-300 hover:text-cyan-400 transition-colors relative group"
             >
               {item.name}
@@ -79,7 +79,7 @@ const navItems = [
     {
       navItems.map((item) => (
         <a
-          href={item.url}
+          href={`/${item.url}`}
           class="text-xl font-mono text-slate-300 dark:text-slate-300 hover:text-cyan-400 mobile-link"
         >
           {item.name}
