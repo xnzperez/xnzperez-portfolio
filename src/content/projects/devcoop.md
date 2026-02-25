@@ -1,7 +1,7 @@
 ---
 title: "DevCoop E-commerce"
 description: "Functional e-commerce prototype focused on the digitalization of MSMEs. Features a robust RESTful API and a modern React interface."
-tags: ["React", "Node.js", "PostgreSQL", "UX/UI", "REST API"]
+tags: ["JavaScript", "React", "Node.js", "PostgreSQL", "UX/UI", "REST API"]
 publishDate: 2024-10-15
 featured: true
 githubLink: "https://github.com/DevCoop/devcoop"
